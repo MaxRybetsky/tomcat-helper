@@ -3,7 +3,7 @@ settings = "settings.txt"
 
 
 def get_settings(name=settings):
-    file = open(name, "w+")
+    file = open(name, "r")
     dest = file.read()
     if dest == '':
         return 'Need path'
