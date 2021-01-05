@@ -2,6 +2,7 @@ import os
 import subprocess
 import tkinter as tk
 import shutil
+import settings
 from time import sleep
 from tkinter import messagebox
 
@@ -12,7 +13,7 @@ pathToBin = os.getenv('CATALINA_HOME') + '\\bin\\'
 # Path to web applications
 pathToWebApps = os.getenv('CATALINA_HOME') + '\\webapps\\'
 # Path to source code
-source = 'C:\\projects\\spring_course\\spring_course_mvc\\target\\spring_course_mvc.war'
+source = settings.get_settings()
 # Is server ON
 serverOn = False
 
@@ -30,6 +31,7 @@ def start():
         return
     global source
     source = entry1.get()
+    settings.set_settings(source)
     shutil.copy2(source, pathToWebApps)
     sleep(1)
     dispatcher(True)
@@ -56,7 +58,8 @@ def dispatcher(operation):
 def restart_full():
     if serverOn:
         stop()
-    res = build_new_war()
+    res = build_new_war(entry1.get())
+    sleep(3)
     if res == 0:
         start()
     else:

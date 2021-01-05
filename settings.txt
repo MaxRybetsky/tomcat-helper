@@ -1,0 +1,1 @@
+C:\projects\spring_course\spring_course_mvc_hibernate_aop_practise\target\spring_course_mvc_hibernate_aop_practise.war
